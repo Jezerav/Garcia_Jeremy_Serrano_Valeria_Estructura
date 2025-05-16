@@ -65,118 +65,136 @@ public class Garcia_Jeremy_Serrano_Valeria_Estructura {
 
                 // ====== OPCIÓN 2: FILTRAR PALABRAS SEGÚN SU LONGITUD ======
                 case 2:
+                    // Se le pide al usuario que escriba una frase
                     System.out.print("Ingrese una frase: ");
-                    String frase = lea.next();
-                    System.out.print("Ingrese una longitud minima: ");
-                    int longitud = lea.nextInt();
+                    String frase = lea.next(); 
 
-                    String palabraFiltro ="";
-                    String palabraNormal ="";
-                    
+                    // Se le pide al usuario que escriba un número que será el mínimo de letras por palabra
+                    System.out.print("Ingrese una longitud minima: ");
+                    int longitud = lea.nextInt(); 
+
+                    // Es para guardar las palabras que cumplan con la longitud mínima
+                    String palabraFiltro = "";
+                    // Esta variable es para ir construyendo palabra por palabra
+                    String palabraNormal = "";
+
+                    // Este ciclo recorre toda la frase letra por letra
                     for (int conta = 0; conta < frase.length(); conta++) {
-                        char letra = frase.charAt(conta);
+                        char letra = frase.charAt(conta); // Sacamos una letra de la frase
+
+                        // Si la letra es un espacio o no es una letra (ni minúscula ni mayúscula)
                         if (letra == ' ' || !(letra >= 'a' && letra <= 'z') || !(letra >= 'A' || letra <= 'Z')) {
+                            // Revisamos si la palabra que llevamos construida es igual o más larga que el mínimo
                             if (palabraNormal.length() >= longitud) {
-                                palabraFiltro += palabraNormal + " ";
+                                palabraFiltro += palabraNormal + " "; // Si se cumple el filtro la agregamos a las filtradas
                             }
-                            palabraNormal = "";
-                        } else 
-                        
-                        {
+                            palabraNormal = ""; // Reiniciamos para empezar otra palabra
+                        } else {
+                            // Si la letra sí es válida, se la agregamos a la palabra en construcción
                             palabraNormal += letra;
                         }
                     }
 
+                    // Al salir del ciclo, revisamos si la última palabra también cumple con el mínimo
                     if (palabraNormal.length() >= longitud) {
                         palabraFiltro += palabraNormal;
                     }
-
+                    
                     System.out.println("Palabras con longitud mínima de " + longitud + ":");
                     System.out.println(palabraFiltro);
 
                 // ====== OPCIÓN 3: CÓDIGO ENIGMA (ENCRIPTAR Y DESENCRIPTAR) ======
                 case 3:
-                    boolean sesion=true;
-                    
+                    boolean sesion = true; // Esta variable sirve para controlar si el menú sigue repitiéndose o no
 
-                    do
-                    {
-                    System.out.println("\n--------------------------    MENÚ CÓDIGO ENIGMA   ------------------------");
-                    System.out.println("Elige una de las siguientes opciones: \n    1) Encriptación \n    2) Desencriptación \n    3)Salir");
+                    // El ciclo se repite mientras "sesion" sea true
+                    do {
+                        // Se muestra el menú del Código Enigma
+                        System.out.println("\n--------------------------    MENÚ CÓDIGO ENIGMA   ------------------------");
+                        System.out.println("Elige una de las siguientes opciones: \n    1) Encriptación \n    2) Desencriptación \n    3)Salir");
                         System.out.print("Ingrese opción: ");
-                        int opcionEncrip=lea.nextInt();
+                        int opcionEncrip = lea.nextInt(); // El usuario ingresa una opción
 
-                    switch (opcionEncrip)
-                    { 
+                        // Se evalúa la opción ingresada
+                        switch (opcionEncrip) {
 
-                        case 1:
+                            case 1: // Encriptación
+                                String par = "";    // Aquí se guardan las letras que están en posición par 
+                                String impar = "";  // Aquí se guardan las letras en posición impar
 
-                        String par="";
-                        String impar="";
-                             
-                            System.out.println("--------------------------    MENÚ ENCRIPTACIÓN   ------------------------");
+                                System.out.println("--------------------------    MENÚ ENCRIPTACIÓN   ------------------------");
 
-                            System.out.print("Ingrese la palabra a encriptar: ");
-                            String palabra=lea.next();
+                                System.out.print("Ingrese la palabra a encriptar: ");
+                                String palabra = lea.next(); // El usuario escribe la palabra a encriptar
 
-                            char letra;
-                            for(int i=0; i<palabra.length(); i++)
-                            {
-                            letra=palabra.charAt(i);
-                            if (i%2==0)
-                            {
-                            par +=letra;
-                            }
-                            else
-                            {
-                            impar +=letra;
-                            }
-                            }
-                            String encriptado= par+impar;
-                            System.out.println("Palabra encriptada: " + encriptado);
+                                // Recorremos la palabra letra por letra
+                                for (int i = 0; i < palabra.length(); i++) {
+                                    char letra = palabra.charAt(i); // Sacamos la letra en la posición i (contador)
 
-                        break;
-                        case 2:
-                            System.out.println("\n--------------------------    MENÚ DESENCRIPTACIÓN   ------------------------");
-
-                            System.out.println("Ingrese palabra a desencriptar: ");
-                            encriptado=lea.next();
-                            System.out.println("Encriptado: "+ encriptado);
-                            int mitad= (encriptado.length()+1)/2;
-
-                            String mitad1= encriptado.substring(0,mitad);
-                                System.out.println(mitad1);
-                            String mitad2= encriptado.substring(mitad);
-                                System.out.println(mitad2);
-
-                            String result="";
-
-                            int l=0; int k=0;
-
-                            for(int j=0; j<=encriptado.length(); j++)
-                            {
-                                if (j % 2 ==0 &&  l< mitad1.length()) {
-                                result += mitad1.charAt(l);
-                                l++;
-
-                                } 
-                                if (j % 2 != 0 && k < mitad2.length()) {
-                                  result += mitad2.charAt(k);
-                                  k++;
+                                    if (i % 2 == 0) {
+                                        par += letra; // Si la posición es par, se agrega a la variable par
+                                    } else {
+                                        impar += letra; // Si es impar, se agrega a impar
+                                    }
                                 }
 
+                                // Se forma la palabra encriptada uniendo primero las letras pares y luego las impares
+                                String encriptado = par + impar;
 
-                            } 
-                            System.out.println("Palabra Desencriptada: " + result); 
-                        
+                                // resultado encriptado
+                                System.out.println("Palabra encriptada: " + encriptado);
+                                break;
+
+                            case 2: // Desencriptación
+                                System.out.println("\n--------------------------    MENÚ DESENCRIPTACIÓN   ------------------------");
+
+                                System.out.println("Ingrese palabra a desencriptar: ");
+                                encriptado = lea.next(); // Se recibe la palabra encriptada
+
+                                System.out.println("Encriptado: " + encriptado);
+
+                                // Calculamos el punto medio para separar la palabra
+                                int mitad = (encriptado.length() + 1) / 2;
+
+                                // mitad1 tendrá las letras pares (al inicio del encriptado)
+                                String mitad1 = encriptado.substring(0, mitad);
+                                System.out.println(mitad1);
+
+                                // mitad2 tendrá las letras impares (al final del encriptado)
+                                String mitad2 = encriptado.substring(mitad);
+                                System.out.println(mitad2);
+
+                                String result = ""; // Aquí se guardará la palabra desencriptada
+                                int l = 0; // índce para mitad1
+                                int k = 0; // índice para mitad2
+
+                                // Vamos combinando las letras una por una para armar la original
+                                for (int j = 0; j <= encriptado.length(); j++) {
+                                    if (j % 2 == 0 && l < mitad1.length()) {
+                                        result += mitad1.charAt(l);
+                                        l++;
+                                    }
+                                    if (j % 2 != 0 && k < mitad2.length()) {
+                                        result += mitad2.charAt(k);
+                                        k++;
+                                    }
+                                }
+
+                                // Resultado final desencriptado
+                                System.out.println("Palabra Desencriptada: " + result);
+                                break;
+
+                            case 3: // Salir
+                                System.out.println("\nSaliste");
+                                System.out.println("Byeeeeeeeeee");
+                                sesion = false; // Cambiamos la variable para que el ciclo ya no se repita
+                                break;
+                        }
+
+                    } while (sesion == true); // El menú se repite mientras sesion sea verdadero
+
+
                     break;
-                    
-                    case 3:
-                        System.out.println("\nSaliste");
-                        System.out.println("Byeeeeeeeeee");
-                        sesion=false;
-                }
-                }while (sesion==true);
 
                 // SALIR DEL PROGRAMA 
                 case 4:
