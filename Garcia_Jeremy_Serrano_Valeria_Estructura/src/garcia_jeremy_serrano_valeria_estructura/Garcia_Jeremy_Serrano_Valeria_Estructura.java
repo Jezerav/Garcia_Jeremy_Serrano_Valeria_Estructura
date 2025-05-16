@@ -93,8 +93,7 @@ public class Garcia_Jeremy_Serrano_Valeria_Estructura {
 
                     do
                     {
-                    System.out.println("-------------------------- BIENVENIDO A TIENDA  -------------------------");
-                    System.out.println("--------------------------    MENÚ PRINCIPAL    ------------------------");
+                    System.out.println("\n--------------------------    MENÚ PRINCIPAL    ------------------------");
                     System.out.println("Elige una de las siguientes opciones: \n    1) Encriptación \n    2) Desencriptación \n    3)Salir");
                         System.out.print("Ingrese opción: ");
                         int opcionEncrip=lea.nextInt();
@@ -104,10 +103,10 @@ public class Garcia_Jeremy_Serrano_Valeria_Estructura {
 
                         case 1:
 
-                        String par="";
-                        String impar="";
+                            String par="";
+                            String impar="";
 
-                            System.out.print("palabra:");
+                            System.out.print("Ingrese la palabra a encriptar: ");
                             String palabra=lea.next();
 
                             char letra;
@@ -124,45 +123,45 @@ public class Garcia_Jeremy_Serrano_Valeria_Estructura {
                             }
                             }
                             encriptado= par+impar;
-                            System.out.println("encriptado " + encriptado);
+                            System.out.println("Palabra encriptada: " + encriptado);
 
                         break;
                         case 2:
-                        if (encriptado.isEmpty())
-                        {
-                            System.out.println("no se ha encriptado ningun mensaje");
-                        }
-                        else
-                        {
-                        System.out.println("Encriptado "+ encriptado);
-                        int mitad= (encriptado.length()+1)/2;
+                            if (encriptado=="")
+                            {
+                                System.out.println("No se ha encriptado ningun mensaje");
+                            }
+                            else
+                            {
+                            System.out.println("Encriptado: "+ encriptado);
+                            int mitad= (encriptado.length()+1)/2;
 
-                        String mitad1= encriptado.substring(0,mitad);
-                            System.out.println(mitad1);
-                        String mitad2= encriptado.substring(mitad);
-                            System.out.println(mitad2);
+                            String mitad1= encriptado.substring(0,mitad);
+                                System.out.println(mitad1);
+                            String mitad2= encriptado.substring(mitad);
+                                System.out.println(mitad2);
 
-                        String result="";
+                            String result="";
 
-                        int l=0; int k=0;
+                            int l=0; int k=0;
 
-                        for(int j=0; j<=encriptado.length(); j++)
-                        {
-                            if (j % 2 ==0 &&  l< mitad1.length()) {
-                            result += mitad1.charAt(l);
-                            l++;
+                            for(int j=0; j<=encriptado.length(); j++)
+                            {
+                                if (j % 2 ==0 &&  l< mitad1.length()) {
+                                result += mitad1.charAt(l);
+                                l++;
+
+                                } 
+                                if (j % 2 != 0 && k < mitad2.length()) {
+                                  result += mitad2.charAt(k);
+                                  k++;
+                                }
+
 
                             } 
-                            if (j % 2 != 0 && k < mitad2.length()) {
-                              result += mitad2.charAt(k);
-                              k++;
+                            System.out.println("Palabra Desencriptada: " + result); 
                             }
-
-
-                        } 
-                        System.out.println("Desencriptado: " + result); 
-                        }
-                        break;
+                            break;
 
                         case 3:
                             System.out.println("Saliste");
