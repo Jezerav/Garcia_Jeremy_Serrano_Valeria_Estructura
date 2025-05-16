@@ -29,16 +29,24 @@ public class Garcia_Jeremy_Serrano_Valeria_Estructura {
                 case 1:
                     System.out.print("\nIngrese una frase a cifrar: ");
                     String fraseInicial = lea.next();
-                    System.out.print("Ingrese la cantidad de posiciones a desplazar: ");
-                    int desplazar = lea.nextInt(); // Cantidad de letras que se moverán
+                    // Variable donde se guardará el número de desplazamiento
+                    int desplazar;
 
-                    if (desplazar <= 0) {
-                        System.out.println("El desplazamiento debe ser un número entero positivo.");
-                        break;
-                    }
+                    // Bucle que se repite hasta que se ingrese un número positivo
+                    do {
+                        System.out.print("Ingrese la cantidad de posiciones a desplazar: ");
+                        desplazar = lea.nextInt(); // Lee el número ingresado
+
+                        // Si es inválido, se muestra un mensaje y se repite
+                        if (desplazar <= 0) {
+                            System.out.println("El desplazamiento debe ser un número positivo. Intente de nuevo.");
+                        }
+                    } while (desplazar <= 0); // Repetir mientras el número no sea válido
+
 
                     String fraseCifrada = ""; // Aquí se guardará el resultado
-
+                    
+                    
                     // Recorremos cada letra de la frase
                     for (int conta = 0; conta < fraseInicial.length(); conta++) {
                         char letraInicial = fraseInicial.charAt(conta); // Sacamos una letra
